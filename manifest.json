@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Coursera Grade Calculator",
+  "version": "1.0",
+  "description": "Calculates your overall current grade on Coursera using visible scores and weights.",
+  "permissions": ["activeTab", "scripting"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.coursera.org/learn/*/home/assignments*"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "48": "icon.png"
+  }
+}
+
