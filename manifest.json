@@ -5,7 +5,7 @@
   "description": "Calculates your overall current grade on Coursera using visible scores and weights.",
   "permissions": ["scripting", "tabs"],
   "host_permissions": [
-    "*://*.coursera.org/*"
+    "https://www.coursera.org/learn/*/home/assignments*"
   ],
   "background": {
     "service_worker": "background.js"
