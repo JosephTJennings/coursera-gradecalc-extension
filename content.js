@@ -1,4 +1,4 @@
-console.log("[GradeCalc] Coursera extension loaded");
+console.log("[Coursera Grade Calculator] Coursera extension loaded");
 
 (function calculateGrade() {
     const waitForContent = setInterval(() => {
@@ -11,7 +11,7 @@ console.log("[GradeCalc] Coursera extension loaded");
                 row.querySelector('.weight-column') && row.querySelector('.grade-column')
             );
 
-            console.log(`[GradeCalc] Found ${validRows.length} valid assignment rows`);
+            console.log(`[Coursera Grade Calculator] Found ${validRows.length} valid assignment rows`);
             if (validRows.length > 0) {
                 clearInterval(waitForContent);
                 computeGradeFromRows(validRows);
@@ -49,10 +49,10 @@ console.log("[GradeCalc] Coursera extension loaded");
                     totalWeightGraded += weight;
                     weightedSumGraded += (grade * weight / 100);
                     weightedSumAll += (grade * weight / 100);
-                    console.log(`[GradeCalc] Row ${i + 1} — Weight: ${weight}%, Grade: ${grade}%`);
+                    console.log(`[Coursera Grade Calculator] Row ${i + 1} — Weight: ${weight}%, Grade: ${grade}%`);
                 } else {
                     weightedSumAll += 0;
-                    console.log(`[GradeCalc] Row ${i + 1} — Weight: ${weight}%, Grade: -- (ungraded)`);
+                    console.log(`[Coursera Grade Calculator] Row ${i + 1} — Weight: ${weight}%, Grade: -- (ungraded)`);
                 }
             }
         });
@@ -64,23 +64,28 @@ console.log("[GradeCalc] Coursera extension loaded");
         box.style.cssText = `
             background: #f0f8ff;
             border: 2px solid #333;
-            padding: 12px;
+            padding: 16px;
             font-size: 16px;
-            font-weight: bold;
             color: #000;
             margin: 20px;
-            text-align: center;
+            width: fit-content;
         `;
 
         box.innerHTML = `
-            <div>📘 <strong>Graded Only:</strong> ${gradedScore !== null ? gradedScore.toFixed(2) + '%' : 'N/A'}</div>
-            <div>📊 <strong>Including Ungraded as 0%:</strong> ${projectedScore !== null ? projectedScore.toFixed(2) + '%' : 'N/A'}</div>
+            <div style="display: flex; justify-content: space-between; gap: 40px; min-width: 300px; margin-bottom: 6px;">
+                <span><strong>Graded Only:</strong></span>
+                <span style="text-align: right;">${gradedScore !== null ? gradedScore.toFixed(2) + '%' : 'N/A'}</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; gap: 40px; min-width: 300px;">
+                <span><strong>Including Ungraded as 0%:</strong></span>
+                <span style="text-align: right;">${projectedScore !== null ? projectedScore.toFixed(2) + '%' : 'N/A'}</span>
+            </div>
         `;
 
         const container = document.querySelector('[data-testid="assignments-page"]') || document.body;
         container.prepend(box);
 
-        console.log(`[GradeCalc] Final graded-only: ${gradedScore?.toFixed(2)}%`);
-        console.log(`[GradeCalc] Final including ungraded: ${projectedScore?.toFixed(2)}%`);
+        console.log(`[Coursera Grade Calculator] Final graded-only: ${gradedScore?.toFixed(2)}%`);
+        console.log(`[Coursera Grade Calculator] Final including ungraded: ${projectedScore?.toFixed(2)}%`);
     }
 })();
